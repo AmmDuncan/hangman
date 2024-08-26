@@ -1,3 +1,43 @@
 {
-  "extends": "next/core-web-vitals"
+  "extends": ["next/core-web-vitals", "plugin:prettier/recommended"],
+  "plugins": ["simple-import-sort", "prettier"],
+  "rules": {
+    "simple-import-sort/imports": "error",
+    "simple-import-sort/exports": "error"
+  },
+  "overrides": [
+    {
+      "files": ["**/*.js", "**/*.ts", "**/*.tsx"],
+      "rules": {
+        "no-unused-vars": ["error", {
+          "vars": "local",          // Check all variables
+          "args": "after-used",   // Check arguments after the last used argument
+          "ignoreRestSiblings": true,  // Ignore rest siblings (`...rest`)
+          "varsIgnorePattern": "^_",  // Ignore variables that match this pattern (e.g., variables starting with an underscore)
+          "argsIgnorePattern": "^_"   // Ignore arguments that match this pattern (e.g., arguments starting with an underscore)
+        }],
+        "simple-import-sort/imports": [
+          "error",
+          {
+            "groups": [
+              // `react` first, `next` second, then packages starting with a character
+              ["^react$", "^next", "^[a-z]"],
+              // Packages starting with `@`
+              ["^@"],
+              // Packages starting with `~`
+              ["^~"],
+              // Imports starting with `../`
+              ["^\\.\\.(?!/?$)", "^\\.\\./?$"],
+              // Imports starting with `./`
+              ["^\\./(?=.*/)(?!/?$)", "^\\.(?!/?$)", "^\\./?$"],
+              // Style imports
+              ["^.+\\.s?css$"],
+              // Side effect imports
+              ["^\\u0000"]
+            ]
+          }
+        ]
+      }
+    }
+  ]
 }
