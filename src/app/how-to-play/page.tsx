@@ -44,8 +44,8 @@ export default function HowToPlay() {
 
           <p className="mt-6 text-white">
             The computer fills in the relevant blank spaces if your guess is
-            correct. If it's wrong, you lose some health, which empties after
-            eight incorrect guesses.
+            correct. If it&apos;s wrong, you lose some health, which empties
+            after eight incorrect guesses.
           </p>
         </div>
       </div>
