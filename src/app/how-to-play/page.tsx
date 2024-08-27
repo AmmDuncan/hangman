@@ -25,7 +25,7 @@ export default function HowToPlay() {
           <span className="hidden md:block" />
         </div>
 
-        <div className="mt-10">
+        <div className="mt-[100px] lg:mt-[155px]">
           <ol className="grid list-inside gap-6 space-y-4 lg:grid-cols-3 lg:gap-8">
             {steps.map((step) => (
               <li
