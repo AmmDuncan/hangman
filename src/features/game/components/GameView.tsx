@@ -55,11 +55,8 @@ export function GameView() {
         setHealth((prevHealth) => prevHealth - 1);
       } else {
         if (!isMuted) playCorrect();
-        setSelectedLetters((prevLetters) => [
-          ...prevLetters,
-          key.toLowerCase(),
-        ]);
       }
+      setSelectedLetters((prevLetters) => [...prevLetters, key.toLowerCase()]);
     },
     [
       selectedLetters,
