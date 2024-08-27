@@ -58,7 +58,7 @@ export const Text = React.memo(function Text(props: Props) {
     h5: "lg:text-base",
     h6: "text-base",
     p: "text-[26px] leading-[32px]",
-    span: "text-xs",
+    span: "text-[20px] leading-[1.2]",
   };
 
   const classNames = cn([

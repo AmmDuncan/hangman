@@ -35,6 +35,7 @@ export function GameView() {
     handleWon,
     handlePlay,
     handleLost,
+    handlePause,
     setSelectedLetters,
   } = useGameStateContext();
 
@@ -81,9 +82,18 @@ export function GameView() {
   );
 
   useEffect(() => {
+    const handleEscapeKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        handlePause();
+      }
+    };
     document.addEventListener("keydown", handleKeyDown);
-    return () => document.removeEventListener("keydown", handleKeyDown);
-  }, [handleKeyDown]);
+    document.addEventListener("keydown", handleEscapeKey);
+    return () => {
+      document.removeEventListener("keydown", handleKeyDown);
+      document.removeEventListener("keydown", handleEscapeKey);
+    };
+  }, [handleKeyDown, handlePause]);
 
   /** handle winning the game */
   useEffect(() => {

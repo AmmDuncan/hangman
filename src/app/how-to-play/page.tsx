@@ -2,6 +2,7 @@ import Link from "next/link";
 
 import { Button } from "@/components/Button";
 import { BackArrowIcon } from "@/components/icons/BackArrowIcon";
+import { Text } from "@/components/Text";
 
 export default function HowToPlay() {
   return (
@@ -21,34 +22,61 @@ export default function HowToPlay() {
             alt="how to play"
             className="lg:[460px] w-[190px] md:w-[350px]"
           />
-          <span></span>
+          <span className="hidden md:block" />
         </div>
 
-        <div>
-          <ol className="list-inside list-decimal space-y-4 text-white">
-            <li>
-              <span className="font-bold">Choose a category:</span> Select a
-              word category, such as animals or movies.
-            </li>
-            <li>
-              <span className="font-bold">Guess letters:</span> The computer
-              randomly selects a secret word from the chosen category and
-              displays blanks for each letter. Take turns guessing letters.
-            </li>
-            <li>
-              <span className="font-bold">Win or lose:</span> You win by
-              guessing all the letters before your health runs out. You lose if
-              the health bar empties before you complete the word.
-            </li>
+        <div className="mt-10">
+          <ol className="grid list-inside gap-6 space-y-4 lg:grid-cols-3 lg:gap-8">
+            {steps.map((step) => (
+              <li
+                key={step.number}
+                className="flex items-center gap-10 rounded-[40px] bg-white px-10 py-8 text-center text-dark-navy lg:flex-col lg:px-11 lg:py-[60px]"
+              >
+                <Text variant="h2" as="p" className="hidden text-blue md:block">
+                  {step.number}
+                </Text>
+                <div className="flex flex-col gap-2 text-left lg:items-center lg:text-center">
+                  <div className="flex items-center gap-2">
+                    <Text variant="h4" className="text-blue md:hidden">
+                      {step.number}
+                    </Text>
+                    <Text variant="h4" as="h3" className="tracking-wide">
+                      {step.title}
+                    </Text>
+                  </div>
+                  <Text
+                    variant="span"
+                    className="tracking-wider text-[#887DC0]"
+                  >
+                    {step.description}
+                  </Text>
+                </div>
+              </li>
+            ))}
           </ol>
-
-          <p className="mt-6 text-white">
-            The computer fills in the relevant blank spaces if your guess is
-            correct. If it&apos;s wrong, you lose some health, which empties
-            after eight incorrect guesses.
-          </p>
         </div>
       </div>
     </div>
   );
 }
+
+const steps = [
+  {
+    number: "01",
+    title: "CHOOSE A CATEGORY",
+    description:
+      "First, choose a word category, like animals or movies. The computer then randomly selects a secret word from that topic and shows you blanks for each letter of the word.",
+  },
+  {
+    number: "02",
+    title: "GUESS LETTERS",
+    description:
+      "Take turns guessing letters. The computer fills in the relevant blank spaces if your guess is correct. If it's wrong, you lose some health, which empties after eight incorrect guesses.",
+  },
+  {
+    number: "03",
+    title: "WIN OR LOSE",
+    description:
+      "You win by guessing all the letters in the word before your health runs out. If the health bar empties before you guess the word, you lose.",
+  },
+];
